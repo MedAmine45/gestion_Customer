@@ -1,0 +1,40 @@
+﻿@model ProjectBusinessCustomer.Models.AddPhoneNumberViewModel
+@{
+    ViewBag.Title = "Numéro de téléphone";
+}
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="@Url.Action("index", "TimeSheets")">TimeSheet</a>
+        </li>
+        <li class="active">éditer</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <h2>@ViewBag.Title.</h2>
+
+    @using (Html.BeginForm("AddPhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Ajouter un numéro de téléphone</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Envoyer" />
+            </div>
+        </div>
+    }
+</div><!-- /.page-content -->
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

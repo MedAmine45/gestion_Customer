@@ -1,0 +1,41 @@
+﻿@model ProjectBusinessCustomer.Models.Society
+@{
+    ViewBag.Title = "FormProject";
+}
+
+<h2>Affecter un projet à une société</h2>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">@Model.SocietyName</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("SaveProject", "Society"))
+            {
+
+                <div class="form-group">
+                    <label class="control-label">Project:</label>
+                    <select name="ProjectID" class="form-control js-example-basic-single dropdown-menu">
+                        @{
+                            foreach (var project in ViewBag.Projects)
+                            {
+                                <option value="@project.ProjectID">@project.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+               
+
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="enregister" id="btn-submit" />
+                    @Html.ActionLink("la liste", "Societies", null, new { @class = "btn btn-primary" })
+                </div>
+
+            }
+        </div>
+
+        <div class="panel-footer">
+
+        </div>
+    </div>
+
+</div>
+

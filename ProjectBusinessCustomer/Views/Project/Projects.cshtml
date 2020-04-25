@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ProjectBusinessCustomer.Models.Project>
+@{
+    ViewBag.Title = "Projects";
+}
+
+<h2>les projets</h2>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">
+            la liste des projets
+            <div class="text-center">inlsprl</div>
+        </div>
+        <div class="panel panel-body">
+            <div>
+                <form method="post" asp-action="Search">
+                    <div class="form-group">
+                        <input type="text" name="keyword" id="myInput" placeholder="filtrer par mot clé.." class="form-control" />
+                    </div>
+                </form>
+            </div>
+
+         
+            <div>Résultats de la requête: @Model.Count()  projets trouvés</div>
+            <table class="table table-hover table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th>
+                            State
+                        </th>
+                        <th>
+                            Dernière heure de mise à jour
+                        </th>
+                      
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+                <tbody id="myTable">
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.Name)*@
+                                @Html.ActionLink(item.Name, "Details", new { item.ProjectID })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.State)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastUpdateTime)
+                            </td>
+                         
+                            <td>
+                                
+                                @Html.ActionLink("Details", "Details", new { ProjectID = item.ProjectID }) 
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+
+</div>

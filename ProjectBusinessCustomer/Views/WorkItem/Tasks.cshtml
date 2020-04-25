@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ProjectBusinessCustomer.Models.Task>
+@{
+    ViewBag.Title = "Tasks";
+}
+
+    <h2>tâches</h2>
+
+<div class="container" style="width:20000px;">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            la liste des tâches
+            <div class="text-center">inlsprl</div>
+        </div>
+        <div class="panel-body">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <form method="post" asp-action="Search">
+                        <div class="form-group">
+                            @*<label class="control-label">Keyword: </label>*@
+                            <input type="text" name="keyword" id="myInput" placeholder="filtrer par mot clé.." class="form-control" />
+                        </div>
+                    </form>
+                    <div>Résultats de la requête: @Model.Count() tâches trouvés</div>
+                  @Html.ActionLink("synchroniser", "Synchronisation", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+
+
+            <table class="table table-hover table-condensed table-striped ">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Assigned To
+                        </th>
+                        <th>
+                            State
+                        </th>
+
+                        <th>
+                            Area Path
+                        </th>
+                        <th>
+                            Create Date
+                        </th>
+                        <th>
+                            State Change Date
+                        </th>
+                        <th>
+                            Activity Date
+                        </th>
+                        @*<th>Action</th>*@
+                    </tr>
+
+                </thead>
+
+                <tbody id="myTable">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TaskIdDev)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssignedTo)     
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.State)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AreaPath)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.userEmail)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StateChangeDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChangedDate)
+                            </td>
+                            @*<td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.TaskID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.TaskID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.TaskID })
+                            </td>*@
+                        </tr>
+                    }
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+        
+    </div>
+</div>
+

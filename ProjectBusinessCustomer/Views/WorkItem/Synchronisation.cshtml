@@ -1,0 +1,52 @@
+﻿@model ProjectBusinessCustomer.Models.UserToken
+@{
+    ViewBag.Title = "Synchronisation";
+}
+
+<h2>Synchronisation</h2>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">synchroniser les taches </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Nom:</label>
+                        @Html.TextBoxFor(Model => Model.Uri, new { @class = "form-control", @Value = "https://inlsprl.visualstudio.com" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Token:</label>
+                        @Html.TextBoxFor(Model => Model.Token, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.Token, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Project Name:</label><br />
+                        @*@Html.TextBoxFor(Model => Model.Projectname, new { @class = "form-control" })*@
+                        @Html.DropDownListFor(Model => Model.Projectname, (SelectList)ViewBag.Name, "Choose an Projects",new { @class = "form-control js-example-basic-single dropdown-menu" })
+                        @Html.ValidationMessageFor(Model => Model.Projectname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+
+                <input class="btn btn-primary" type="submit" value="Actualiser" id="btn-submit" onclick=" success()" />
+                @Html.ActionLink("la liste", "Tasks", null, new { @class = "btn btn-primary" })
+            </div>
+        }
+        </div>
+        <div class="panel-footer">
+            
+        </div>
+    </div>
+</div>

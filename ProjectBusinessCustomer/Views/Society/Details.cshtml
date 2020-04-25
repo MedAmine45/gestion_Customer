@@ -1,0 +1,105 @@
+﻿@model ProjectBusinessCustomer.Models.Society
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">@Model.SocietyName</div>
+        <div class="panel-body">
+            <h3>les employées</h3>
+            <table class="table table-hover table-condensed table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>CustomerName</th>
+                    <th>Profile</th>
+                    <th>Country</th>
+                    <th>Region</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Fax</th>
+                    <th>Activity</th>
+                    <th>Important Notes</th>
+                    @*<th>Action</th>*@
+
+
+                </tr>
+                @{
+                    foreach (var c in Model.Customers)
+                    {
+                        <tr>
+                            <td>@c.CustomerID</td>
+                            <td>@c.CustomerName</td>
+                            <td>@c.Profile</td>
+                            <td>@c.Country</td>
+                            <td>@c.Region</td>
+                            <td>@c.Address</td>
+                            <td>@c.Email</td>
+                            <td>@c.Phone</td>
+                            <td>@c.Fax</td>
+                            <td>@c.Activity</td>
+
+                            <td>@c.ImportantNotes</td>
+                            @*<td>
+                                @Html.ActionLink("Edit", "~/Views/Customer/Edit", new { CustomerID = c.CustomerID })|
+                                @Html.ActionLink("Delete", "Delete", new { CustomerID = c.CustomerID }, new { onclick = "return confirm('Are you sure you want to delete ?');" })
+                            </td>*@
+
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("la liste des sociétés", "Societies", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">@Model.SocietyName</div>
+        <div class="panel-body">
+            <h2>les projets</h2>
+            <table class="table table-hover table-condensed table-striped">
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Dernière heure de mise à jour
+                    </th>
+                    <th>Action</th>
+
+
+                </tr>
+                @{
+                    foreach (var project in ViewBag.Projects)
+                    {
+                        <tr>
+                            <td>@project.Name</td>
+                            <td>@project.Description</td>
+                            <td>@project.State</td>
+                            <td>@project.LastUpdateTime</td>
+                            <td>@Html.ActionLink("Retirer","Remove",new { ProjectID = project.ProjectID}, new { onclick = "return confirm('Are you sure,  you want to remove?');" })</td>
+                            @*<td>
+                                @Html.ActionLink("Edit", "~/Views/Customer/Edit", new { CustomerID = c.CustomerID })|
+                                @Html.ActionLink("Delete", "Delete", new { CustomerID = c.CustomerID }, new { onclick = "return confirm('Are you sure you want to delete ?');" })
+                            </td>*@
+
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("la liste des sociétés", "Societies", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("AjouterProjet", "FormProject", new { SocietyID = Model.SocietyID}, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProjectBusinessCustomer.Models.Society>
+@{
+    ViewBag.Title = "Societies";
+}
+
+    <h2>les  sociétés</h2>
+<div class="container ">
+    <div class="panel panel-primary">
+        <div class="panel-heading">la liste des sociétés</div>
+        <div class="panel-body ">
+            <div>
+                <form method="post" asp-action="Search">
+                    <div class="form-group">
+                        <input type="text" name="keyword" id="myInput" placeholder="filtrer par mot clé.." class="form-control" />
+                    </div>
+                </form>
+            </div>
+            <table class="table table-hover table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom de société</th>
+                        <th>Company Social</th>
+                        <th>Adresse de la société</th>
+                        <th>Email de la société</th>
+                        <th>Téléphone de la société</th>
+                        <th>Web Site</th>
+                        <th>Société Fax</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    @{
+                        foreach (var s in Model)
+                        {
+                            <tr>
+                                <td>@s.SocietyID</td>
+                                <td> @Html.ActionLink(s.SocietyName, "Details", new { s.SocietyID })</td>
+                                <td>@s.CompanySocial</td>
+                                <td>@s.SocietyAddress</td>
+                                <td>@s.SocietyEmail</td>
+                                <td>@s.SocietyPhone</td>
+                                <td>@s.WebSite</td>
+                                <td>@s.SocietyFax</td>
+                                <td>
+                                    @Html.ActionLink("modifier", "Edit", new { SocietyID = s.SocietyID })|
+                                    @Html.ActionLink("Détails", "Details", new { SocietyID = s.SocietyID })|
+                                    @Html.ActionLink("AjouterProjet", "FormProject", new { SocietyID = s.SocietyID })|
+                                    @Html.ActionLink("supprimer", "Delete", new { SocietyID = s.SocietyID }, new { onclick = "return confirm('Êtes-vous sûr que vous voulez supprimer ?');" })
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("Ajouter une nouvelle société", "FormSociety", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>

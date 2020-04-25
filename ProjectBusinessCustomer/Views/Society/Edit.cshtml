@@ -1,0 +1,86 @@
+﻿@model ProjectBusinessCustomer.Models.Society
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">modifier une société</div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Society Name:</label>
+                        @Html.TextBoxFor(x => x.SocietyName, new { @class = "form-control", @id = "SocietyName" })
+                        @Html.ValidationMessageFor(x => x.SocietyName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Company Social:</label>
+                        @Html.TextBoxFor(x => x.CompanySocial, new { @class = "form-control", @id = "CompanySocial" })
+                        @Html.ValidationMessageFor(x => x.CompanySocial, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Society Address:</label>
+                        @Html.TextBoxFor(x => x.SocietyAddress, new { @class = "form-control", @id = "SocietyAddress" })
+                        @Html.ValidationMessageFor(x => x.SocietyAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Society Email : </label>
+                        @Html.TextBoxFor(x => x.SocietyEmail, "", new { @class = "form-control", @id = "SocietyEmail" })
+                        @Html.ValidationMessageFor(x => x.SocietyEmail, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Society Phone:</label>
+                        @Html.TextBoxFor(x => x.SocietyPhone, new { @class = "form-control", @id = "SocietyPhone" })
+                        @Html.ValidationMessageFor(x => x.SocietyPhone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Society Fax:</label>
+                        @Html.TextBoxFor(x => x.SocietyFax, new { @class = "form-control", @id = "SocietyFax" })
+                        @Html.ValidationMessageFor(x => x.SocietyFax, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Web Site:</label>
+                        @Html.TextBoxFor(x => x.WebSite, new { @class = "form-control", @id = "WebSite" })
+                        @Html.ValidationMessageFor(x => x.WebSite, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="enregister" id="submit" onclick="edit_success()" />
+                    @Html.ActionLink("la liste", "Societies", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    function edit_success() {
+        if ($('#SocietyName').val() != '' && $('#CompanySocial').val() != '' && $('#SocietyAddress').val() != '' && $('#SocietyPhone').val() != '' && $('#SocietyFax').val() != '' && $('#WebSite').val() != '')
+            return alert('Society has been edit');
+    }
+</script>

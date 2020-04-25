@@ -1,0 +1,83 @@
+﻿@model ProjectBusinessCustomer.Models.Project
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center">@Model.Name</div>
+        <div class="panel-body">
+            <div>
+                <form method="post" asp-action="Search">
+                    <div class="form-group">
+                        @*<label>Keyword: </label>*@
+                        <input type="text" name="keyword" id="myInput" placeholder="Search.." class="form-control" />
+                    </div>
+                </form>
+            </div>
+            <table class="table table-hover table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Assigned To
+                        </th>
+                        <th>
+                            State
+                        </th>
+
+                        <th>
+                            Area Path
+                        </th>
+
+                        <th>
+                            Create Date
+                        </th>
+                        <th>
+                            State Change Date
+                        </th>
+                        <th>
+                            Activity Date
+                        </th>
+                        @*<th>Action</th>*@
+                    </tr>
+
+                </thead>
+                <tbody id="myTable">
+                    @{
+                        foreach (var task in Model.Tasks.OrderBy(t=>t.TaskIdDev))
+                        {
+                            <tr>
+                                <td>@task.TaskIdDev</td>
+                                <td>@task.Title</td>
+                                <td>@task.State</td>
+                                <td>@task.AssignedTo</td>
+                                <td>@task.AreaPath</td>
+                                <td>@task.CreatedDate</td>
+                                <td>@task.StateChangeDate</td>
+                                <td>@task.ChangedDate</td>
+                                @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = task.TaskID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = task.TaskID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = task.TaskID })
+                                </td>*@
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        <div class="panel-footer">
+            @Html.ActionLink("la liste des projets", "Projects", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+</div>

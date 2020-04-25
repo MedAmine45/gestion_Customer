@@ -1,0 +1,42 @@
+﻿@model ProjectBusinessCustomer.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Admin:Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="panel">
+        <div class="panel-heading">
+            <h3> page d'authentification:</h3>
+        </div>
+        <div class="panel-body">
+            <p class="lead">Veuillez vous connecter pour accéder à la zone d'administration::  </p>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Nom d'utilisateur:</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Mot de passe:</label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+                <input type="submit" value="Log in" class="btn btn-primary" />
+            }
+
+        </div>
+        </div>
+</body>
+</html>

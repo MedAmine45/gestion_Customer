@@ -1,0 +1,129 @@
+﻿@model ProjectBusinessCustomer.Models.Customer
+@{
+    ViewBag.Title = "Edit";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">modifier un employée</div>
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Nom:</label>
+                        @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control", @id = "CustomerName" })
+                        @Html.ValidationMessageFor(x => x.CustomerName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Profile:</label>
+                        @Html.TextBoxFor(x => x.Profile, new { @class = "form-control", @id = "Profile" })
+                        @Html.ValidationMessageFor(x => x.Profile, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Pays:</label>
+                        @Html.TextBoxFor(x => x.Country, new { @class = "form-control", @id = "Country" })
+                        @Html.ValidationMessageFor(x => x.Country, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Région:</label>
+                        @Html.TextBoxFor(x => x.Region, new { @class = "form-control", @id = "Region" })
+                        @Html.ValidationMessageFor(x => x.Region, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+
+                    <div class="form-group">
+                        <label class="control-label">Adresse:</label>
+                        @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @id = "Address" })
+                        @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">E-mail:</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "Email" })
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="form-group">
+                        <label class="control-label">Téléphone:</label>
+                        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", @id = "Phone" })
+                        @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fax:</label>
+                        @Html.TextBoxFor(x => x.Fax, new { @class = "form-control", @id = "Fax" })
+                        @Html.ValidationMessageFor(x => x.Fax, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Activité:</label>
+                        @Html.TextBoxFor(x => x.Activity, new { @class = "form-control", @id = "Activity" })
+                        @Html.ValidationMessageFor(x => x.Activity, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Les notes Importantes:</label>
+                        @Html.TextAreaFor(x => x.ImportantNotes, new { @class = "form-control", @id = "ImportantNotes" })
+                        @Html.ValidationMessageFor(x => x.ImportantNotes, "", new { @class = "text-danger " })
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label class="control-label">Société:</label>
+                        <select name="SocietyID" class="form-control">
+                            @{
+                                foreach (var s in ViewBag.Societies)
+                                {
+                                    <option value="@s.SocietyID">@s.SocietyName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="text-center">
+                    <input class="btn btn-primary" type="submit" value="enregister" id="btn-submit" onclick=" edit_success()" />
+                    @Html.ActionLink("la liste", "Customers", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    function ValidateCaseSensitiveEmail() {
+        var email = document.getElementById('Email').value;
+        var reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+        if (reg.test(email)) {
+            alert("Valid");
+        }
+        else {
+            alert("In Valid");
+        }
+    }
+    function edit_success() {
+        if ($('#CustomerName').val() != '' && $('#Profile').val() != '' && $('#Country').val() != '' && $('#Region').val() != '' && $('#Address').val() != '' && $('#Email').val() != '' && $('#Phone').val() != '' && $('#Fax').val() != '' && $('#Activity').val() != '' && $('#ImportantNotes').val() != '')
+            return alert('L\'employé a été modifié');
+    }
+
+</script>

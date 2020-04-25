@@ -1,0 +1,51 @@
+﻿@model ProjectBusinessCustomer.Models.IndexViewModel
+@{
+    ViewBag.Title = "Gérer";
+}
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="@Url.Action("Customers", "Customer")">Employées</a>
+        </li>
+        <li class="active">Mon profil</li>
+    </ul>
+</div>
+
+<div class="page-content">
+    <h2>@ViewBag.Title.</h2>
+
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <div>
+        <h4>Changer les paramètres de votre compte</h4>
+        <hr />
+        <dl class="dl-horizontal ">
+            <dt>Mot de passe :</dt>
+            <dd>
+                [
+                @if (Model.HasPassword)
+                {
+                    @Html.ActionLink("Changer votre mot de passe", "ChangePassword")
+                }
+                else
+                {
+                    @Html.ActionLink("Créer", "SetPassword")
+                }
+                ]
+            </dd>
+            <dt>Connexions externes :</dt>
+            <dd>
+                @Model.Logins.Count [
+                @Html.ActionLink("Gérer", "ManageLogins") ]
+            </dd>
+            <dt>Authentification à 2 facteurs :</dt>
+            <dd>
+                <p>
+                    Aucun fournisseur d'authentification à deux facteurs n'est configuré.
+                </p>
+            </dd>
+         
+        </dl>
+    </div>
+
+</div><!-- /.page-content -->
